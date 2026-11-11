@@ -36,7 +36,45 @@ ESPN public JSON endpoints are unofficial and can change. Open-Meteo provides pu
 
 The Probability Model Lab is deliberately transparent and input-driven. It is not a trained model and has not been validated against historical results. The weights are starter defaults, not proven universal weights. The edge categories are scored from -5 to +5 and combined with fixed weights. The resulting weighted edge is converted to an adjustment to the expected score margin using the user-controlled points-per-edge setting. A normal CDF converts the adjusted margin and chosen standard deviation into a probability. The Monte Carlo check samples that same assumed distribution; it is not independent confirmation.
 
-Do not enter missing injuries, lineups, goalie/pitcher confirmations or weather as if verified. Keep source, timestamp and sample size with every manual input. Backtesting is stored in the browser's localStorage on that device/browser, not on a central account. Grade predictions only after final results. Draws/ties are retained as a separate grade but excluded from the current binary accuracy and Brier score summary.
+# Elite Wagers 5.0
+
+Sportsbook odds comparison, multi-sport scores, player lookup and stats research.
+
+## Files
+- `index.html` — dashboard UI
+- `server.js` — Node.js API proxy and public data integrations
+- `package.json` — start script and Node version
+- `.env.example` — optional environment variable template
+- `.gitignore`
+- `README.md`
+
+## Deploy on Render (free)
+Create a **Web Service** connected to the GitHub repository.
+- Runtime: Node
+- Root Directory: leave blank
+- Build Command: `npm install`
+- Start Command: `npm start`
+- Instance: Free
+
+## Free data integrations
+1. ESPN public JSON feeds: scores, schedules, player search/profile/game-log data. These endpoints are unofficial and may change.
+2. MLB Stats API: public MLB player lookup and current-season hitting/pitching stats. Check MLB's terms for permitted use.
+3. The Odds API: optional free key for sportsbook moneylines, spreads and totals. The provider currently advertises a free plan with a monthly credit allowance; coverage/limits can change. Player props are not included in this free integration.
+
+## Add the free odds key
+1. Create an account at https://the-odds-api.com/ and copy your API key.
+2. In Render, open your Web Service -> Environment -> Add Environment Variable.
+3. Key: `THE_ODDS_API_KEY`
+4. Value: paste your key.
+5. Save changes and redeploy.
+
+Do not put the API key in `index.html`, GitHub, or a public file. It must remain a Render environment variable.
+
+## Important model/data notes
+- Moneyline prices are sourced sportsbook prices when available.
+- Vig-removed implied probabilities are calculated from both sides of the market. They are market-derived probabilities, not independent model forecasts.
+- Player props are not automatically supplied by the free odds integration. The prop research section calculates sample frequencies only from results the user enters.
+- Do not describe a pick as guaranteed or a historical hit rate as a forecast.
 
 ## Deploy on Render
 
