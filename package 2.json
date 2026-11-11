@@ -1,0 +1,9 @@
+{
+  "name": "elite-wagers-research",
+  "version": "5.0.0",
+  "private": true,
+  "description": "Elite Wagers sports research and analytics website",
+  "main": "server.js",
+  "scripts": {"start": "node server.js"},
+  "engines": {"node": ">=18"}
+}

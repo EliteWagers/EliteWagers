@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: elite-wagers
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: THE_ODDS_API_KEY
+        sync: false
+      - key: PRIZEPICKS_API_URL
+        sync: false
+      - key: PRIZEPICKS_API_KEY
+        sync: false
