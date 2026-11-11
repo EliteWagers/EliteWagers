@@ -45,7 +45,4 @@ async function handler(req,res){
   }
   if(u.pathname==='/')return send(res,200,fs.readFileSync(path.join(ROOT,'index.html'),'utf8'),'text/html; charset=utf-8');
   const safe=path.normalize(path.join(ROOT,u.pathname));if(!safe.startsWith(ROOT))return send(res,403,'Forbidden','text/plain');
-  if(fs.existsSync(safe)&&fs.statSync(safe).isFile()){const ext=path.extname(safe);const types={'.html':'text/html; charset=utf-8','.css':'text/css','.js':'text/javascript','.json':'application/json','.png':'image/png','.svg':'image/svg+xml'};return send(res,200,fs.readFileSync(safe),types[ext]||'application/octet-stream');}
-  return send(res,404,{error:'Not found'});
-}
-http.createServer((req,res)=>handler(req,res).catch(e=>send(res,500,{error:e.message}))).listen(PORT,()=>console.log(`Elite Wagers running on port ${PORT}`));
+  if(fs.existsSync(safe)&&fs.statSync(safe).isFile()){const ext=path.extname(safe);const types={'.html':'text/html; charset=utf-8','.css':'text/css','.js':'text/javascript','.json':'application/json'
